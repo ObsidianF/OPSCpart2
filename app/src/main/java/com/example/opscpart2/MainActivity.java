@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnLogout;
 
+    private Button btnAddCollection;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,18 @@ public class MainActivity extends AppCompatActivity {
 
                 logout();
 
-            } }); }
+            } });
+
+        btnAddCollection = findViewById(R.id.btnlogout2);
+
+        btnAddCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addCollection();
+            }
+        });
+
+    }
 
     @Override
 
@@ -65,4 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
-    }}
+    }
+
+    public void addCollection() {
+
+
+        startActivity(new Intent(MainActivity.this, AddCollectionActivity.class));
+
+    }
+
+}

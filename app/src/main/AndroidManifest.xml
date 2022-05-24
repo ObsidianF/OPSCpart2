@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OPSCpart2">
         <activity
+            android:name=".AddCollectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

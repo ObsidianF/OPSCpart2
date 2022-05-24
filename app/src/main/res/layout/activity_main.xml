@@ -7,22 +7,29 @@
     tools:context=".MainActivity"
     android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/text_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to Home Page!"
-        android:layout_centerInParent="true"
-        android:textSize="20dp"
-        android:layout_marginBottom="20dp"
-        />
-
 
     <Button
         android:id="@+id/btnlogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_welcome"
-        android:text="Log Out"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="522dp"
+        android:text="Log Out" />
+
+    <ListView
+        android:id="@+id/collectionListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/btnlogout"
+        android:layout_marginBottom="190dp" />
+
+    <Button
+        android:id="@+id/btnlogout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="85dp"
+        android:layout_marginBottom="21dp"
+        android:text="Add Collection" />
 
 </RelativeLayout>
