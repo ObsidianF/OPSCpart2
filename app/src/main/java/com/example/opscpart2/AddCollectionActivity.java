@@ -62,7 +62,7 @@ public class AddCollectionActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             collections.setName(collectionname.getText().toString());
-            collections.setName(goal.getText().toString());
+            collections.setGoal(goal.getText().toString());
 
             ref.child(String.valueOf(maxid+1)).setValue(collections);
 

@@ -2,7 +2,7 @@ package com.example.opscpart2;
 
 public class Collections {
     private String name;
-    private int goal;
+    private String goal;
 
     public Collections(){}
 
@@ -14,11 +14,11 @@ public class Collections {
         this.name = name;
     }
 
-    public int getGoal() {
+    public String getGoal() {
         return goal;
     }
 
-    public void setGoal(int goal) {
+    public void setGoal(String goal) {
         this.goal = goal;
     }
 }
