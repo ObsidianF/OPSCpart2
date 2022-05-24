@@ -7,6 +7,24 @@
     tools:context=".MainActivity"
     android:layout_margin="10dp">
 
+    <EditText
+        android:id="@+id/textName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnHome"
+        android:layout_marginBottom="-144dp"
+        android:hint="Collection Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/textGoal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnHome"
+        android:layout_marginBottom="-200dp"
+        android:hint="Collection Items Goal"
+        android:inputType="number" />
+
     <Button
         android:id="@+id/btnHome"
         android:layout_width="match_parent"
@@ -14,6 +32,14 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="522dp"
         android:text="Go to Home screen" />
+
+    <Button
+        android:id="@+id/btnStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="278dp"
+        android:text="OK" />
 
 
 </RelativeLayout>
