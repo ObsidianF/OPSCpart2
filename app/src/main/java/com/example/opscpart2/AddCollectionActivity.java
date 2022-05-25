@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +26,8 @@ public class AddCollectionActivity extends AppCompatActivity {
     Collections collections;
     Button btn;
 
+
+
     private Button Home;
 
     @Override
@@ -33,6 +37,7 @@ public class AddCollectionActivity extends AppCompatActivity {
 
         collectionname= findViewById(R.id.textName);
         goal = findViewById(R.id.textGoal);
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         btn = findViewById(R.id.btnStore);
 
         collections = new Collections();
@@ -55,6 +60,10 @@ public class AddCollectionActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
+
+
+
         });
 
     btn.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +72,11 @@ public class AddCollectionActivity extends AppCompatActivity {
 
             collections.setName(collectionname.getText().toString());
             collections.setGoal(goal.getText().toString());
+            collections.setUid(uid);
 
             ref.child(String.valueOf(maxid+1)).setValue(collections);
+
+            goHome();
 
         }
     });
@@ -79,9 +91,17 @@ public class AddCollectionActivity extends AppCompatActivity {
                 goHome();
             }
         });
+
+
+
+
     }
 
+
+
+
     public void goHome(){
+
         startActivity(new Intent(AddCollectionActivity.this, MainActivity.class));
 
     }
