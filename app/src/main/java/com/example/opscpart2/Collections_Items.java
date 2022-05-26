@@ -2,17 +2,23 @@ package com.example.opscpart2;
 
 //hello
 
-public class Collections {
+public class Collections_Items {
     private String name;
     private String goal;
     private String uid;
 
-    public Collections(){}
+    public Collections_Items(){}
 
-    public Collections(String name, String goal, String uid) {
+  //  public Collections_Items(String name, String goal, String uid) {
+   //     this.name = name;
+  //      this.goal = goal;
+     //   this.uid = uid;
+  //  }
+
+    public Collections_Items(String name, String goal) {
         this.name = name;
         this.goal = goal;
-        this.uid = uid;
+        //   this.uid = uid;
     }
 
     public String getName() {
@@ -31,11 +37,7 @@ public class Collections {
         this.goal = goal;
     }
 
-    public String getUid() {
-        return uid;
-    }
+   // public String getUid() { return uid;}
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
+    //public void setUid(String uid) {this.uid = uid;}
 }

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +22,7 @@ public class AddCollectionActivity extends AppCompatActivity {
     DatabaseReference ref;
     EditText collectionname,goal;
     int maxid = 0;
-    Collections collections;
+    Collections_Items collectionsItems;
     Button btn;
 
 
@@ -40,7 +39,7 @@ public class AddCollectionActivity extends AppCompatActivity {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         btn = findViewById(R.id.btnStore);
 
-        collections = new Collections();
+        collectionsItems = new Collections_Items();
         ref = database.getInstance().getReference().child("Collection");
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -70,11 +69,11 @@ public class AddCollectionActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            collections.setName(collectionname.getText().toString());
-            collections.setGoal(goal.getText().toString());
-            collections.setUid(uid);
+            collectionsItems.setName(collectionname.getText().toString());
+            collectionsItems.setGoal(goal.getText().toString());
+           // collectionsItems.setUid(uid);
 
-            ref.child(String.valueOf(maxid+1)).setValue(collections);
+            ref.child(String.valueOf(maxid+1)).setValue(collectionsItems);
 
             goHome();
 
