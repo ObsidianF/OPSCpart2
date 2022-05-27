@@ -26,17 +26,13 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
     private final List<Collections_Items> items;
     private final Context context;
-    //private ItemClickListner mItemListener;
+    private ItemClickListner mItemListener;
 
-    public CollectionAdapter(List<Collections_Items> items, Context context) {
+    public CollectionAdapter(List<Collections_Items> items, Context context, ItemClickListner itemClickListner) {
         this.items = items;
         this.context = context;
-        //this.
+        this.mItemListener = itemClickListner;
     }
-
-
-
-
 
     @NonNull
     @Override
@@ -49,8 +45,16 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
         Collections_Items collections_items = items.get(position);
 
-        holder.name.setText(collections_items.getName());
-        holder.goal.setText(collections_items.getGoal());
+        String name = "Collection: " + collections_items.getName();
+        String goal = "Goal: " + collections_items.getGoal();
+
+        holder.name.setText(name);
+        holder.goal.setText(goal);
+
+        holder.itemView.setOnClickListener(view ->{
+            mItemListener.onItemClick(items.get(position));
+
+        });
 
     }
 
@@ -59,11 +63,11 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
         return items.size();
     }
 
-   // public interface ItemClickListner{
+    public interface ItemClickListner{
 
-   //     void onItemClick(Collections_Items details);
+        void onItemClick(Collections_Items details);
 
-   // }
+    }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView name,goal;

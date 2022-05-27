@@ -32,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private final List<Collections_Items> collections_itemsList = new ArrayList<>();
+    public final List<Collections_Items> collections_itemsList = new ArrayList<>();
     private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
 
 
@@ -72,10 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-
-
                 }
-                recyclerView.setAdapter(new CollectionAdapter(collections_itemsList,MainActivity.this));
+                recyclerView.setAdapter(new CollectionAdapter(collections_itemsList, MainActivity.this, new CollectionAdapter.ItemClickListner() {
+                    @Override
+                    public void onItemClick(Collections_Items details) {
+
+                        goDetails();
+
+                    }
+                }));
             }
 
             @Override
@@ -140,6 +144,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         startActivity(new Intent(MainActivity.this, AddCollectionActivity.class));
+
+    }
+
+
+    public void goDetails() {
+
+
+        startActivity(new Intent(MainActivity.this, CollectionDetailActivity.class));
 
     }
 

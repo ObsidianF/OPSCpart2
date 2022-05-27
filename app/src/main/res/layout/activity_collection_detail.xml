@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".CollectionDetailActivity">
 
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="580dp"
+        android:text="Go to Home screen"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
