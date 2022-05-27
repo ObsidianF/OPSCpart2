@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Random;
+
 public class AddCollectionActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
@@ -37,6 +39,10 @@ public class AddCollectionActivity extends AppCompatActivity {
         collectionname= findViewById(R.id.textName);
         goal = findViewById(R.id.textGoal);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final int min = 1;
+        final int max = 1000000000;
+        final int random = new Random().nextInt((max - min) + 1) + min;
+        String id = String.valueOf(random);
         btn = findViewById(R.id.btnStore);
 
         collectionsItems = new Collections_Items();
@@ -71,7 +77,9 @@ public class AddCollectionActivity extends AppCompatActivity {
 
             collectionsItems.setName(collectionname.getText().toString());
             collectionsItems.setGoal(goal.getText().toString());
-           // collectionsItems.setUid(uid);
+            collectionsItems.setUid(uid);
+            collectionsItems.setId(id);
+
 
             ref.child(String.valueOf(maxid+1)).setValue(collectionsItems);
 

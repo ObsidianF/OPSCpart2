@@ -3,17 +3,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.view.View;
-
 import android.widget.Button;
-
+import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button btnLogout;
     private Button btnAddCollection;
+    private String uid;
+
+
 
     private final List<Collections_Items> collections_itemsList = new ArrayList<>();
     private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -40,14 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+        uid = mAuth.getUid();
         btnLogout = findViewById(R.id.btnlogout);
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerview);
-
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -59,17 +58,22 @@ public class MainActivity extends AppCompatActivity {
 
                 for(DataSnapshot name : snapshot.child("Collection").getChildren()){
 
-                    if(name.hasChild("name") && name.hasChild("goal")){
+                    if (name.child("uid").getValue(String.class).equals(uid))
+                    {
+                        if(name.hasChild("name") && name.hasChild("goal") && name.hasChild("id") && name.hasChild("uid")){
+                            final String getName = name.child("name").getValue(String.class);
+                            final String getGoal = name.child("goal").getValue(String.class);
+                            final String getUID = name.child("uid").getValue(String.class);
+                            final String getID = name.child("id").getValue(String.class);
+
+                            Collections_Items collections_items = new Collections_Items(getName, getGoal, getUID, getID);
+                            collections_itemsList.add(collections_items);
+                        }
 
                     }
 
 
 
-                    final  String getName = name.child("name").getValue(String.class);
-                    final  String getGoal = name.child("goal").getValue(String.class);
-                    Collections_Items collections_items = new Collections_Items(getName,getGoal);
-
-                    collections_itemsList.add(collections_items);
                 }
                 recyclerView.setAdapter(new CollectionAdapter(collections_itemsList,MainActivity.this));
             }
@@ -79,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
 
@@ -101,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     @Override
@@ -110,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
         if(currentUser==null)
 
@@ -131,5 +142,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, AddCollectionActivity.class));
 
     }
+
+
+
+
+
 
 }

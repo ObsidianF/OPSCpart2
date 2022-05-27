@@ -2,6 +2,7 @@ package com.example.opscpart2;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,12 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
     private final List<Collections_Items> items;
     private final Context context;
+    //private ItemClickListner mItemListener;
 
     public CollectionAdapter(List<Collections_Items> items, Context context) {
         this.items = items;
         this.context = context;
+        //this.
     }
 
 
@@ -48,12 +51,19 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
         holder.name.setText(collections_items.getName());
         holder.goal.setText(collections_items.getGoal());
+
     }
 
     @Override
     public int getItemCount() {
         return items.size();
     }
+
+   // public interface ItemClickListner{
+
+   //     void onItemClick(Collections_Items details);
+
+   // }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView name,goal;
