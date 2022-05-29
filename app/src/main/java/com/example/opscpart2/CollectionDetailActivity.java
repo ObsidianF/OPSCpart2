@@ -21,7 +21,6 @@ public class CollectionDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_collection_detail);
 
         Home = findViewById(R.id.btnHome);
-
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +30,6 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
 
         btnAddItem = findViewById(R.id.btnAdd);
-
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,16 +45,10 @@ public class CollectionDetailActivity extends AppCompatActivity {
         Intent previousIntent = getIntent();
         String parsedStringID = previousIntent.getStringExtra("id");
         //selectedCollection = MainActivity.collections_itemsList.get(Integer.valueOf(parsedStringID));
-
-
-
     }
 
     public void addItemScreen() {
-
-
         startActivity(new Intent(CollectionDetailActivity.this, AddItemActivity.class));
-
     }
 
     public void goHome(){

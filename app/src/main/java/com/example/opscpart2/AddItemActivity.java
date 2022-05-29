@@ -21,7 +21,7 @@ public class AddItemActivity extends AppCompatActivity {
     DatabaseReference ref;
     EditText description, dateText;
     int maxid = 0;
-    Items itemsToAdd;
+    ItemGetSet itemGetSetToAdd;
     Button btn;
     private Button Home;
 
@@ -35,7 +35,7 @@ public class AddItemActivity extends AppCompatActivity {
 
         btn = findViewById(R.id.btnStore);
 
-        itemsToAdd = new Items();
+        itemGetSetToAdd = new ItemGetSet();
         ref = database.getInstance().getReference().child("Items");
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -63,10 +63,10 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                itemsToAdd.setDetails(description.getText().toString());
-                itemsToAdd.setDate(dateText.getText().toString());
+                itemGetSetToAdd.setDetails(description.getText().toString());
+                itemGetSetToAdd.setDate(dateText.getText().toString());
 
-                ref.child(String.valueOf(maxid+1)).setValue(itemsToAdd);
+                ref.child(String.valueOf(maxid+1)).setValue(itemGetSetToAdd);
 
                 goHome();
 

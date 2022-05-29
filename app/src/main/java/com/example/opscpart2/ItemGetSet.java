@@ -1,13 +1,13 @@
 package com.example.opscpart2;
 
-public class Items {
+public class ItemGetSet {
 
     private String details;
     private String date;
 
-    public Items(){}
+    public ItemGetSet(){}
 
-    public Items(String details, String date) {
+    public ItemGetSet(String details, String date) {
         this.details = details;
         this.date = date;
     }
