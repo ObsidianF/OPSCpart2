@@ -9,44 +9,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Random;
-
-public class AddCollectionActivity extends AppCompatActivity {
+public class AddItemActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference ref;
-    EditText collectionname,goal;
+    EditText description, dateText;
     int maxid = 0;
-    Collections_Items collectionsItems;
+    Items itemsToAdd;
     Button btn;
     private Button Home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_collection);
+        setContentView(R.layout.activity_add_item);
 
-        collectionname= findViewById(R.id.textName);
-        goal = findViewById(R.id.textGoal);
-
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        final int min = 1;
-        final int max = 1000000000;
-        final int random = new Random().nextInt((max - min) + 1) + min;
-        String id = String.valueOf(random);
+        description = findViewById(R.id.textFiled1);
+        dateText = findViewById(R.id.textFiled2);
 
         btn = findViewById(R.id.btnStore);
 
-        collectionsItems = new Collections_Items();
-        ref = database.getInstance().getReference().child("Collection");
+        itemsToAdd = new Items();
+        ref = database.getInstance().getReference().child("Items");
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -66,32 +56,27 @@ public class AddCollectionActivity extends AppCompatActivity {
 
             }
 
-
-
-
         });
 
-    btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
 
-            collectionsItems.setName(collectionname.getText().toString());
-            collectionsItems.setGoal(goal.getText().toString());
-            collectionsItems.setUid(uid);
-            collectionsItems.setId(id);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                itemsToAdd.setDetails(description.getText().toString());
+                itemsToAdd.setDate(dateText.getText().toString());
 
-            ref.child(String.valueOf(maxid+1)).setValue(collectionsItems);
+                ref.child(String.valueOf(maxid+1)).setValue(itemsToAdd);
 
-            goHome();
+                goHome();
 
-        }
-    });
+            }
+        });
+
 
 
 
         Home = findViewById(R.id.btnHome);
-
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,18 +85,13 @@ public class AddCollectionActivity extends AppCompatActivity {
         });
 
 
-
-
     }
-
-
 
 
     public void goHome(){
 
-        startActivity(new Intent(AddCollectionActivity.this, MainActivity.class));
+        startActivity(new Intent(AddItemActivity.this, MainActivity.class));
 
     }
-
 
 }

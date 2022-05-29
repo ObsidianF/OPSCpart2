@@ -3,6 +3,7 @@ package com.example.opscpart2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Insets;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
     public final Collections_Items selectedCollection = new Collections_Items();
 
     private Button Home;
+    private Button btnAddItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,16 @@ public class CollectionDetailActivity extends AppCompatActivity {
             }
         });
 
+
+        btnAddItem = findViewById(R.id.btnAdd);
+
+        btnAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addItemScreen();
+            }
+        });
+
     }
 
 
@@ -37,6 +49,13 @@ public class CollectionDetailActivity extends AppCompatActivity {
         //selectedCollection = MainActivity.collections_itemsList.get(Integer.valueOf(parsedStringID));
 
 
+
+    }
+
+    public void addItemScreen() {
+
+
+        startActivity(new Intent(CollectionDetailActivity.this, AddItemActivity.class));
 
     }
 
