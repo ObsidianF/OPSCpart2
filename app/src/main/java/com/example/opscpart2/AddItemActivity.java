@@ -65,6 +65,8 @@ public class AddItemActivity extends AppCompatActivity {
 
                 itemGetSetToAdd.setDetails(description.getText().toString());
                 itemGetSetToAdd.setDate(dateText.getText().toString());
+                itemGetSetToAdd.setCollectionID(MainActivity.holder.getId());
+
 
                 ref.child(String.valueOf(maxid+1)).setValue(itemGetSetToAdd);
 

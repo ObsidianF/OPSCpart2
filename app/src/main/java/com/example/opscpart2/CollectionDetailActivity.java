@@ -45,18 +45,23 @@ public class CollectionDetailActivity extends AppCompatActivity {
                 itemGetSetsList.clear();
             for(DataSnapshot items : snapshot.child("Items").getChildren()){
 
-                if(items.hasChild("details") && items.hasChild("date")){
+                if (items.child("collectionID").getValue(String.class).equals(MainActivity.holder.getId()))
+                {
+                    if(items.hasChild("details") && items.hasChild("date"))
+                    {
 
+                        final  String getDetails = items.child("details").getValue(String.class);
+                        final  String getDate = items.child("date").getValue(String.class);
+                        final String getCollectionId = items.child("CollectionID").getValue(String.class);
 
+                        ItemGetSet itemGetSet = new ItemGetSet(getDetails,getDate, getCollectionId);
 
-                final  String getDetails = items.child("details").getValue(String.class);
-                final  String getDate = items.child("date").getValue(String.class);
+                        itemGetSetsList.add(itemGetSet);
 
-                ItemGetSet itemGetSet = new ItemGetSet(getDetails,getDate);
-
-                itemGetSetsList.add(itemGetSet);
+                    }
 
                 }
+
             }
 
             recyclerView.setAdapter(new MyAdpater(itemGetSetsList,CollectionDetailActivity.this));

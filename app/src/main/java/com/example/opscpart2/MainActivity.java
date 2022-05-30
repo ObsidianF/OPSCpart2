@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogout;
     private Button btnAddCollection;
     private String uid;
+    public static Collections_Items holder;
 
 
 
@@ -75,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setAdapter(new CollectionAdapter(collections_itemsList, MainActivity.this, new CollectionAdapter.ItemClickListner() {
                     @Override
                     public void onItemClick(Collections_Items details) {
+
+                        holder = new Collections_Items();
+                        holder.setUid(details.getUid());
+                        holder.setName(details.getName());
+                        holder.setGoal(details.getGoal());
+                        holder.setId(details.getId());
 
                         goDetails();
 

@@ -4,12 +4,14 @@ public class ItemGetSet {
 
     private String details;
     private String date;
+    private String CollectionID;
 
     public ItemGetSet(){}
 
-    public ItemGetSet(String details, String date) {
+    public ItemGetSet(String details, String date, String collectionID) {
         this.details = details;
         this.date = date;
+        CollectionID = collectionID;
     }
 
     public String getDetails() {
@@ -26,5 +28,13 @@ public class ItemGetSet {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getCollectionID() {
+        return CollectionID;
+    }
+
+    public void setCollectionID(String collectionID) {
+        CollectionID = collectionID;
     }
 }
