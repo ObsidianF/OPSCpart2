@@ -53,8 +53,9 @@ public class CollectionDetailActivity extends AppCompatActivity {
                         final  String getDetails = items.child("details").getValue(String.class);
                         final  String getDate = items.child("date").getValue(String.class);
                         final String getCollectionId = items.child("CollectionID").getValue(String.class);
+                        final String getImagename = items.child("imagename").getValue(String.class);
 
-                        ItemGetSet itemGetSet = new ItemGetSet(getDetails,getDate, getCollectionId);
+                        ItemGetSet itemGetSet = new ItemGetSet(getDetails,getDate, getCollectionId, getImagename);
 
                         itemGetSetsList.add(itemGetSet);
 
@@ -74,7 +75,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
         });
 
 
-                Home = findViewById(R.id.btnHome);
+        Home = findViewById(R.id.btnHome);
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +103,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
     }
 
     public void addItemScreen() {
-        startActivity(new Intent(CollectionDetailActivity.this, AddItemActivity.class));
+        startActivity(new Intent(CollectionDetailActivity.this, ImageActivity.class));
     }
 
     public void goHome(){

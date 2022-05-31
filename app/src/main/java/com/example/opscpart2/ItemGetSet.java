@@ -5,13 +5,16 @@ public class ItemGetSet {
     private String details;
     private String date;
     private String CollectionID;
+    private String imagename;
+
 
     public ItemGetSet(){}
 
-    public ItemGetSet(String details, String date, String collectionID) {
+    public ItemGetSet(String details, String date, String collectionID, String imagename) {
         this.details = details;
         this.date = date;
         CollectionID = collectionID;
+        this.imagename = imagename;
     }
 
     public String getDetails() {
@@ -36,5 +39,13 @@ public class ItemGetSet {
 
     public void setCollectionID(String collectionID) {
         CollectionID = collectionID;
+    }
+
+    public String getImagename() {
+        return imagename;
+    }
+
+    public void setImagename(String imagename) {
+        this.imagename = imagename;
     }
 }
