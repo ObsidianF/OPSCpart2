@@ -16,8 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AddItemActivity extends AppCompatActivity {
-
-    FirebaseDatabase database; //
+    FirebaseDatabase database; //test
     DatabaseReference ref;
     EditText description, dateText;
     int maxid = 0;
