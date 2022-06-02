@@ -29,7 +29,7 @@ public class ImageActivity extends AppCompatActivity {
     private Button btnGet;
     private Button btnStore;
     private Button Home;
-    Uri imageUri;
+    public static Uri imageUri;
     ActivityImageBinding binding; //creates a binding so i can link objects to tags in the xml file
     //Android Developers. 2022. Generated binding classes  |  Android Developers. [online] Available at: <https://developer.android.com/topic/libraries/data-binding/generated-binding> [Accessed 2 June 2022].
     private ImageView myImageView;
@@ -67,7 +67,7 @@ public class ImageActivity extends AppCompatActivity {
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goHome();
+                goBack();
             }// makes an OnClickListener to run a method
         });
 
@@ -79,13 +79,13 @@ public class ImageActivity extends AppCompatActivity {
         Date now = new Date(); // gets the current time and date
         filename = formatter.format(now); // this will get the name of the image by setting it to the time it was taken and also formatting it based on the formatter
 
-        storageReference = FirebaseStorage.getInstance().getReference("images/" + filename); // gets the reference of the storage that he image is going to be stored in
+        storageReference = FirebaseStorage.getInstance().getReference("images/" + filename); // gets the reference of the storage that the image is going to be stored in and also gives sets the name
         //Mamo, A., 2022. How to get the child from firebase in android studio?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/68889824/how-to-get-the-child-from-firebase-in-android-studio> [Accessed 2 June 2022].
         storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() { //sends the image to the storage
             //Youtube.com. n.d. Upload Image to Firebase in Android Studio | Upload Image to Firebase Storage | Android Studio. [online] Available at: <https://www.youtube.com/watch?v=g2Iibnnqga0> [Accessed 2 June 2022].
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                binding.imageView.setImageURI(null);
+                binding.imageView.setImageURI(null); // removes the image from the imageview
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -136,6 +136,12 @@ public class ImageActivity extends AppCompatActivity {
     public void goHome() {
 
         startActivity(new Intent(ImageActivity.this, MainActivity.class));
+
+    }
+
+    public void goBack() {
+
+        startActivity(new Intent(ImageActivity.this, CollectionDetailActivity.class));
 
     }
 

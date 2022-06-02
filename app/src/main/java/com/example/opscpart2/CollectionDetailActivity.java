@@ -52,6 +52,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
                             final String getDate = items.child("date").getValue(String.class);
                             final String getCollectionId = items.child("CollectionID").getValue(String.class);
                             final String getImagename = items.child("imagename").getValue(String.class);
+                            final String getImageUri = items.child("imageUri").getValue(String.class);
 
                             ItemGetSet itemGetSet = new ItemGetSet(getDetails, getDate, getCollectionId, getImagename);
                             //sets all of the values to string and stores them in a object

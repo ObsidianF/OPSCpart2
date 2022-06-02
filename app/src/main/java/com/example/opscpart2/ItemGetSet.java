@@ -9,6 +9,7 @@ public class ItemGetSet {
     private String CollectionID;
     private String imagename;
 
+
     public ItemGetSet() {
     }
 
@@ -50,4 +51,5 @@ public class ItemGetSet {
     public void setImagename(String imagename) {
         this.imagename = imagename;
     }
+
 }

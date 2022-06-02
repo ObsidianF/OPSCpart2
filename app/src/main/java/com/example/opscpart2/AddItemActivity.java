@@ -15,11 +15,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class AddItemActivity extends AppCompatActivity {
 
     FirebaseDatabase database; // creates a an object to link to the firebase database
     DatabaseReference ref; // will be used to create a refence to the database and its child within the database
-    EditText description, dateText; // creates 2 edit text varables that will be linked to corosponding edit text fields in the xml file
+    EditText description; // creates 2 edit text varables that will be linked to corosponding edit text fields in the xml file
     int maxid = 0; // id that will be stored
     ItemGetSet itemGetSetToAdd; // makes an object to store values in and send object to the database to be stored
 
@@ -32,7 +36,6 @@ public class AddItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_item); // connects activity and the xml file
 
         description = findViewById(R.id.textFiled1);
-        dateText = findViewById(R.id.textFiled2);
         //sets the edit text fields to the ones in the xml file
 
         btn = findViewById(R.id.btnStore);
@@ -63,9 +66,15 @@ public class AddItemActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() { // creates an on click listener so that it will run the code within when the button is clicked
             @Override
             public void onClick(View v) {
+                String filename;
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd", Locale.CANADA);  //creates a format template
+                Date now = new Date(); // gets the current time and date
+                filename = formatter.format(now); // this will get the name of the image by setting it to the time it was taken and also formatting it based on the formatter
+
+
 
                 itemGetSetToAdd.setDetails(description.getText().toString());
-                itemGetSetToAdd.setDate(dateText.getText().toString());
+                itemGetSetToAdd.setDate(filename);
                 itemGetSetToAdd.setCollectionID(MainActivity.holder.getId());
                 itemGetSetToAdd.setImagename(ImageActivity.filename);
                 //sets all the values in the object to be stored
@@ -78,22 +87,14 @@ public class AddItemActivity extends AppCompatActivity {
 
             }
         });
-
         //Lion, L., 2022. how to go another screen in android studio on button click Code Example. [online] Codegrepper.com. Available at: <https://www.codegrepper.com/code-examples/java/how+to+go+another+screen+in+android+studio+on+button+click> [Accessed 2 June 2022].
-        Home = findViewById(R.id.btnHome);
-        Home.setOnClickListener(new View.OnClickListener() { // creates a button and it listener so that when it is cliked it will run the ho home method
-            @Override
-            public void onClick(View v) {
-                goHome();
-            }
-        });
 
     }
 
 
     public void goHome() {
 
-        startActivity(new Intent(AddItemActivity.this, MainActivity.class)); // an activity to take the user to the main screen
+        startActivity(new Intent(AddItemActivity.this, CollectionDetailActivity.class)); // an activity to take the user to the main screen
 
     }
 
