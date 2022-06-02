@@ -30,73 +30,62 @@ public class ImageActivity extends AppCompatActivity {
     private Button btnStore;
     private Button Home;
     Uri imageUri;
-    ActivityImageBinding binding;
+    ActivityImageBinding binding; //creates a binding so i can link objects to tags in the xml file
+    //Android Developers. 2022. Generated binding classes  |  Android Developers. [online] Available at: <https://developer.android.com/topic/libraries/data-binding/generated-binding> [Accessed 2 June 2022].
     private ImageView myImageView;
-    StorageReference storageReference;
+    StorageReference storageReference; // a reference object to the storage for the image
     public static String filename;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityImageBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        setContentView(binding.getRoot()); // sets up the connection between this class and the xml file
+        //Android Developers. 2022. Generated binding classes  |  Android Developers. [online] Available at: <https://developer.android.com/topic/libraries/data-binding/generated-binding> [Accessed 2 June 2022].
 
         btnGet = findViewById(R.id.btnGet);
         btnGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 selectImage();
-
-            }
+            }  // makes an OnClickListener to run a method
 
         });
 
-
+        //Lion, L., 2022. how to go another screen in android studio on button click Code Example. [online] Codegrepper.com. Available at: <https://www.codegrepper.com/code-examples/java/how+to+go+another+screen+in+android+studio+on+button+click> [Accessed 2 June 2022].
         btnStore = findViewById(R.id.btnStore);
         btnStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 uploadImage();
                 addItemScreen();
-
-            }
+            }// makes an OnClickListener to run the methods
         });
 
-
+        //Lion, L., 2022. how to go another screen in android studio on button click Code Example. [online] Codegrepper.com. Available at: <https://www.codegrepper.com/code-examples/java/how+to+go+another+screen+in+android+studio+on+button+click> [Accessed 2 June 2022].
         Home = findViewById(R.id.btnHome);
         Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goHome();
-            }
+            }// makes an OnClickListener to run a method
         });
-
 
     }
 
-    private void uploadImage() {
+    private void uploadImage() { // method to get the image that was taken and upload it
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
-        Date now = new Date();
-        filename = formatter.format(now);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);  //creates a format template
+        Date now = new Date(); // gets the current time and date
+        filename = formatter.format(now); // this will get the name of the image by setting it to the time it was taken and also formatting it based on the formatter
 
-        storageReference = FirebaseStorage.getInstance().getReference("images/"+filename);
-        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        storageReference = FirebaseStorage.getInstance().getReference("images/" + filename); // gets the reference of the storage that he image is going to be stored in
+        //Mamo, A., 2022. How to get the child from firebase in android studio?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/68889824/how-to-get-the-child-from-firebase-in-android-studio> [Accessed 2 June 2022].
+        storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() { //sends the image to the storage
+            //Youtube.com. n.d. Upload Image to Firebase in Android Studio | Upload Image to Firebase Storage | Android Studio. [online] Available at: <https://www.youtube.com/watch?v=g2Iibnnqga0> [Accessed 2 June 2022].
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
                 binding.imageView.setImageURI(null);
-
-
-
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -109,12 +98,21 @@ public class ImageActivity extends AppCompatActivity {
 
     private void selectImage() {
 
+        //Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        //startActivity(intent);
+        //ACTION_GET_CONTENT
+
+        //Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        //intent.setType("image/");
+        //startActivityForResult(intent, 100);
+
         Intent intent = new Intent();
         intent.setType("image/");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 100);
-
-
+        //Youtube.com. n.d. Upload Image to Firebase in Android Studio | Upload Image to Firebase Storage | Android Studio. [online] Available at: <https://www.youtube.com/watch?v=g2Iibnnqga0> [Accessed 2 June 2022].
+        //Guides.codepath.com. 2022. Accessing the Camera and Stored Media | CodePath Android Cliffnotes. [online] Available at: <https://guides.codepath.com/android/Accessing-the-Camera-and-Stored-Media> [Accessed 2 June 2022].
+        // this will open the camera roll so the user can select an image to store
 
     }
 
@@ -122,25 +120,20 @@ public class ImageActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 100 && data.getData() != null){
-
-            imageUri = data.getData();
+        if (requestCode == 100 && data.getData() != null) {
+            imageUri = data.getData(); // gets image uri
             binding.imageView.setImageURI(imageUri);
-
-
-
-
-
-
+            //Youtube.com. n.d. Upload Image to Firebase in Android Studio | Upload Image to Firebase Storage | Android Studio. [online] Available at: <https://www.youtube.com/watch?v=g2Iibnnqga0> [Accessed 2 June 2022].
+            //Android Developers. 2022. Generated binding classes  |  Android Developers. [online] Available at: <https://developer.android.com/topic/libraries/data-binding/generated-binding> [Accessed 2 June 2022].
+            //Guides.codepath.com. 2022. Accessing the Camera and Stored Media | CodePath Android Cliffnotes. [online] Available at: <https://guides.codepath.com/android/Accessing-the-Camera-and-Stored-Media> [Accessed 2 June 2022].
         }
-
     }
 
     public void addItemScreen() {
         startActivity(new Intent(ImageActivity.this, AddItemActivity.class));
     }
 
-    public void goHome(){
+    public void goHome() {
 
         startActivity(new Intent(ImageActivity.this, MainActivity.class));
 

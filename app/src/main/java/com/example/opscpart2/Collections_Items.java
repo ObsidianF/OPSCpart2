@@ -1,14 +1,16 @@
 package com.example.opscpart2;
 
-//hello
-
 public class Collections_Items {
+
+    //this call is here to hold values before they are either stored in the database or taken to the view to be displayed
+
     private String name;
     private String goal;
     private String uid;
     private String id;
 
-    public Collections_Items(){}
+    public Collections_Items() {
+    }
 
     public Collections_Items(String name, String goal, String uid, String id) {
         this.name = name;
@@ -17,8 +19,6 @@ public class Collections_Items {
         this.id = id;
 
     }
-
-
 
     public String getName() {
         return name;
@@ -36,9 +36,13 @@ public class Collections_Items {
         this.goal = goal;
     }
 
-    public String getUid() { return uid;}
+    public String getUid() {
+        return uid;
+    }
 
-    public void setUid(String uid) {this.uid = uid;}
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public String getId() {
         return id;

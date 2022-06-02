@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id = '@+id/recyclerview'/>
+    //this will make the list of collections
 
 
     <Button
@@ -20,6 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="82dp"
         android:text="Log Out" />
+    //logs the user out
 
     <Button
         android:id="@+id/btnlogout2"
@@ -29,5 +31,6 @@
         android:layout_marginTop="85dp"
         android:layout_marginBottom="21dp"
         android:text="Add Collection" />
+    //adds a new collection
 
 </RelativeLayout>

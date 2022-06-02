@@ -15,6 +15,7 @@
         android:layout_marginBottom="-144dp"
         android:hint="Collection Name"
         android:inputType="text" />
+    // A text filed that will be populated with the collection name
 
     <EditText
         android:id="@+id/textGoal"
@@ -24,6 +25,7 @@
         android:layout_marginBottom="-200dp"
         android:hint="Collection Items Goal"
         android:inputType="number" />
+    // a text field that will only allow the user to enter a number and that will represent the goal items
 
     <Button
         android:id="@+id/btnHome"
@@ -32,6 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="522dp"
         android:text="Go to Home screen" />
+    //button that will take the user to the main screen
 
     <Button
         android:id="@+id/btnStore"
@@ -40,6 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="278dp"
         android:text="OK" />
+    //a button to store the information that has been entered
 
 
 </RelativeLayout>

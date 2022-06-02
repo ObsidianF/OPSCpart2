@@ -2,13 +2,15 @@ package com.example.opscpart2;
 
 public class ItemGetSet {
 
+    //this call is here to hold values before they are either stored in the database or taken to the view to be displayed
+
     private String details;
     private String date;
     private String CollectionID;
     private String imagename;
 
-
-    public ItemGetSet(){}
+    public ItemGetSet() {
+    }
 
     public ItemGetSet(String details, String date, String collectionID, String imagename) {
         this.details = details;

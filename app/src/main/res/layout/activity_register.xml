@@ -14,6 +14,7 @@
         android:text="Register Here"
         android:textSize="20dp"
         android:layout_marginBottom="20dp"/>
+    //displays info
 
     <EditText
         android:id="@+id/register_email"
@@ -23,6 +24,7 @@
         android:layout_below="@+id/text_register"
         android:layout_marginBottom="20dp"
         />
+    //gets the new email
 
     <EditText
         android:id="@+id/register_password"
@@ -32,6 +34,7 @@
         android:layout_below="@+id/register_email"
         android:layout_marginBottom="20dp"
         />
+    //gets the new password
 
 
     <Button
@@ -41,6 +44,8 @@
         android:layout_below="@+id/register_password"
         android:text="Register"
         android:layout_marginBottom="20dp"/>
+    //makes a new account
+
     <TextView
         android:id="@+id/text_login"
         android:layout_width="match_parent"
@@ -49,4 +54,5 @@
         android:text="Existing User Login"
         android:layout_marginBottom="20dp"
         android:textAlignment="center"/>
+    //takes the user back to the login screen
 </RelativeLayout>

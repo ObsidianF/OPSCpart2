@@ -13,18 +13,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.MyViewHolder>{
+public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.MyViewHolder> {
 
-    private final List<Collections_Items> items;
+    private final List<Collections_Items> items; // creates a list of Collections_Items to store everything from the database in
     private final Context context;
     private ItemClickListner mItemListener;
 
@@ -38,6 +41,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
     @Override
     public CollectionAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_adapter_layout, null));
+        //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
     }
 
     @Override
@@ -51,8 +55,9 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
         holder.name.setText(name);
         holder.goal.setText(goal);
 
-        holder.itemView.setOnClickListener(view ->{
+        holder.itemView.setOnClickListener(view -> {
             mItemListener.onItemClick(items.get(position));
+            //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
 
         });
 
@@ -63,20 +68,21 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
         return items.size();
     }
 
-    public interface ItemClickListner{
+    public interface ItemClickListner {
 
         void onItemClick(Collections_Items details);
 
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
-        private final TextView name,goal;
+        private final TextView name, goal;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name =itemView.findViewById(R.id.CollectionNameTV);
-            goal =itemView.findViewById(R.id.GoalAmountTV);
+            name = itemView.findViewById(R.id.CollectionNameTV);
+            goal = itemView.findViewById(R.id.GoalAmountTV);
+            //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
 
         }
     }

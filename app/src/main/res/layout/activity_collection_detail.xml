@@ -11,6 +11,9 @@
         android:id='@+id/recyclerview2'
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    //a view to display all the items that will be retrived from the database
+
+    //add another item
 
     <Button
         android:id="@+id/btnAdd"
@@ -18,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="548dp"
+        android:layout_marginBottom="88dp"
         android:text="Add data"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
@@ -28,9 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="608dp"
-        android:layout_marginBottom="69dp"
+        android:layout_marginBottom="138dp"
         android:text="Go to Home screen"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
+    //go to main screen
+
 
 </RelativeLayout>

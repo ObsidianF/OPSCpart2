@@ -15,6 +15,7 @@
         android:layout_marginBottom="-144dp"
         android:hint="Enter Description"
         android:inputType="text" />
+    //discription of item
 
     <EditText
         android:id="@+id/textFiled2"
@@ -24,6 +25,7 @@
         android:layout_marginBottom="-200dp"
         android:hint="Enter Date"
         android:inputType="text" />
+    //date of item
 
     <Button
         android:id="@+id/btnHome"
@@ -32,6 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="522dp"
         android:text="Go to Home screen" />
+//take the user to the main screen
 
     <Button
         android:id="@+id/btnStore"
@@ -40,6 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="278dp"
         android:text="OK" />
+    //stores the information the user has entered
 
 
 </RelativeLayout>

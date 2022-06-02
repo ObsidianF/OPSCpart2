@@ -20,43 +20,45 @@ import java.util.Random;
 
 public class AddCollectionActivity extends AppCompatActivity {
 
-    FirebaseDatabase database;
-    DatabaseReference ref;
-    EditText collectionname,goal;
-    int maxid = 0;
-    Collections_Items collectionsItems;
-    Button btn;
+    FirebaseDatabase database; //creates an object that will store the database information
+    DatabaseReference ref; // an object that will be used to get the reference of the database
+    EditText collectionname, goal; // 2 variables of type edit text, they will store values in the to be sent to the database
+    int maxid = 0; // the next id of the object in the database. will get the latest id and add 1 to it for the next item
+    Collections_Items collectionsItems; // this object will be populated with all the new values
+    Button btn; // creaes a buton
     private Button Home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_collection);
+        setContentView(R.layout.activity_add_collection);//sets this activity to the related xml file so they can communicate
 
-        collectionname= findViewById(R.id.textName);
-        goal = findViewById(R.id.textGoal);
+        collectionname = findViewById(R.id.textName);
+        goal = findViewById(R.id.textGoal); // sets both edit text variables to the related edit text views in the xml file so they can store text entered
 
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid(); // gets the current logged in users id to be stored for reference
+        //Tutorialspoint.com. 2022. How to get current user is system user or not in android?. [online] Available at: <https://www.tutorialspoint.com/how-to-get-current-user-is-system-user-or-not-in-android> [Accessed 2 June 2022].
+        //Jha, S. and Hacks, S., 2022. How to get user uid from firebase on android?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/37566911/how-to-get-user-uid-from-firebase-on-android> [Accessed 2 June 2022].
 
-        final int min = 1;
-        final int max = 1000000000;
-        final int random = new Random().nextInt((max - min) + 1) + min;
-        String id = String.valueOf(random);
+        final int min = 1;// min random number
+        final int max = 1000000000; // max random number
+        final int random = new Random().nextInt((max - min) + 1) + min; //gets a random number between the min and max
+        String id = String.valueOf(random);// sets the random number as the id
+        //Waheed, A., 2022. How can I generate a random number in a certain range?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/21049747/how-can-i-generate-a-random-number-in-a-certain-range> [Accessed 2 June 2022].
 
-        btn = findViewById(R.id.btnStore);
+        btn = findViewById(R.id.btnStore); //creates a link between the button object and the button inside the xml file
 
-        collectionsItems = new Collections_Items();
-        ref = database.getInstance().getReference().child("Collection");
+        collectionsItems = new Collections_Items(); // creates the object of type Collections_Items
+        ref = database.getInstance().getReference().child("Collection"); // gets the reference of the database under collections
+        //Mamo, A., 2022. How to get the child from firebase in android studio?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/68889824/how-to-get-the-child-from-firebase-in-android-studio> [Accessed 2 June 2022].
 
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() { // when called will start the process of adding a value to the database under coillections
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    maxid = (int) snapshot.getChildrenCount();
+                if (snapshot.exists()) {
+                    maxid = (int) snapshot.getChildrenCount(); // gets the highest count value in the database and stores it
 
-                }else{
-
-                    ///
+                } else {
 
                 }
             }
@@ -65,51 +67,41 @@ public class AddCollectionActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-
-
-
         });
+        //Lion, L., 2022. how to go another screen in android studio on button click Code Example. [online] Codegrepper.com. Available at: <https://www.codegrepper.com/code-examples/java/how+to+go+another+screen+in+android+studio+on+button+click> [Accessed 2 June 2022].
+        btn.setOnClickListener(new View.OnClickListener() { // sets an onclick listener on the button
+            @Override
+            public void onClick(View v) {
 
-    btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+                collectionsItems.setName(collectionname.getText().toString());
+                collectionsItems.setGoal(goal.getText().toString());
+                collectionsItems.setUid(uid);
+                collectionsItems.setId(id);
+                //Firebase. 2022. Read and Write Data on Android  |  Firebase Documentation. [online] Available at: <https://firebase.google.com/docs/database/android/read-and-write> [Accessed 2 June 2022].
+                //sets the values in the object
 
-            collectionsItems.setName(collectionname.getText().toString());
-            collectionsItems.setGoal(goal.getText().toString());
-            collectionsItems.setUid(uid);
-            collectionsItems.setId(id);
+                ref.child(String.valueOf(maxid + 1)).setValue(collectionsItems); // maxid + 1 sets the new id and setValue sets the object to be stored in the database
+                //Firebase. 2022. Read and Write Data on Android  |  Firebase Documentation. [online] Available at: <https://firebase.google.com/docs/database/android/read-and-write> [Accessed 2 June 2022].
 
+                goHome(); // calls the go home method
 
-            ref.child(String.valueOf(maxid+1)).setValue(collectionsItems);
-
-            goHome();
-
-        }
-    });
-
-
-
-        Home = findViewById(R.id.btnHome);
-
-        Home.setOnClickListener(new View.OnClickListener() {
+            }
+        });
+        //Lion, L., 2022. how to go another screen in android studio on button click Code Example. [online] Codegrepper.com. Available at: <https://www.codegrepper.com/code-examples/java/how+to+go+another+screen+in+android+studio+on+button+click> [Accessed 2 June 2022].
+        Home = findViewById(R.id.btnHome); // button link
+        Home.setOnClickListener(new View.OnClickListener() { // sets an on click lister to the button
             @Override
             public void onClick(View v) {
                 goHome();
-            }
+            } // calls the go home method when called
         });
-
-
-
 
     }
 
+    //Lion, L., 2022. how to go another screen in android studio on button click Code Example. [online] Codegrepper.com. Available at: <https://www.codegrepper.com/code-examples/java/how+to+go+another+screen+in+android+studio+on+button+click> [Accessed 2 June 2022].
+    public void goHome() {
 
-
-
-    public void goHome(){
-
-        startActivity(new Intent(AddCollectionActivity.this, MainActivity.class));
+        startActivity(new Intent(AddCollectionActivity.this, MainActivity.class)); // makes an activity where it takes the user to the main screen
 
     }
 
