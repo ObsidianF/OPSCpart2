@@ -22,8 +22,9 @@ public class AddItemActivity extends AppCompatActivity {
     EditText description, dateText; // creates 2 edit text varables that will be linked to corosponding edit text fields in the xml file
     int maxid = 0; // id that will be stored
     ItemGetSet itemGetSetToAdd; // makes an object to store values in and send object to the database to be stored
+
     Button btn;
-    private Button Home;
+    Button Home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
