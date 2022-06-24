@@ -8,17 +8,19 @@ public class Collections_Items {
     private int goal;
     private String uid;
     private String id;
+    private String total;
     private int numberOfItems;
 
     public Collections_Items() {
     }
 
-    public Collections_Items(String name, int goal, String uid, String id, int numberOfItems) {
+    public Collections_Items(String name, int goal, String uid, String id, int numberOfItems,String total) {
         this.name = name;
         this.goal = goal;
         this.uid = uid;
         this.id = id;
         this.numberOfItems = numberOfItems;
+        this.total = total;
     }
 
     public String getName() {
@@ -27,6 +29,13 @@ public class Collections_Items {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) { this.total= total;
     }
 
     public int getGoal() {

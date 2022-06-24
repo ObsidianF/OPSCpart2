@@ -51,9 +51,11 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
         String name = "Collection: " + collections_items.getName();
         String goal = "Goal: " + collections_items.getGoal();
+        String total =  collections_items.getNumberOfItems()+"/"+collections_items.getGoal();
 
         holder.name.setText(name);
         holder.goal.setText(goal);
+        holder.total.setText(total);
 
         holder.itemView.setOnClickListener(view -> {
             mItemListener.onItemClick(items.get(position));
@@ -75,13 +77,15 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
-        private final TextView name, goal;
+        private final TextView name, goal, total;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.CollectionNameTV);
             goal = itemView.findViewById(R.id.GoalAmountTV);
+            total = itemView.findViewById(R.id.GoalTV);
+
             //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
 
         }

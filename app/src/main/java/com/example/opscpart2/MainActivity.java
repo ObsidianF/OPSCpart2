@@ -74,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
                             final String getUID = name.child("uid").getValue(String.class);
                             final String getID = name.child("id").getValue(String.class); // stores the data from the object into local variables
                             final int getNumberOfItems = name.child("numberOfItems").getValue(int.class);
+                            final String getTotal = name.child("total").getValue(String.class);
 
-                            Collections_Items collections_items = new Collections_Items(getName, getGoal, getUID, getID, getNumberOfItems); // stores the variables in an object
+                            Collections_Items collections_items = new Collections_Items(getName, getGoal, getUID, getID, getNumberOfItems, getTotal); // stores the variables in an object
                             collections_itemsList.add(collections_items); // adds the object to the list
                         }
                     }
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         holder.setName(details.getName());
                         holder.setGoal(details.getGoal());
                         holder.setId(details.getId());
+                        holder.setTotal(details.getTotal());
                         //sets the object of the item that was clicked
 
                         goDetails(); // runs the method to go to the details screen
