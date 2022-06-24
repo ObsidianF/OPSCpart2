@@ -8,16 +8,26 @@ public class ItemGetSet {
     private String date;
     private String CollectionID;
     private String imagename;
+    private String id;
 
 
     public ItemGetSet() {
     }
 
-    public ItemGetSet(String details, String date, String collectionID, String imagename) {
+    public ItemGetSet(String details, String date, String collectionID, String imagename, String id) {
         this.details = details;
         this.date = date;
         CollectionID = collectionID;
         this.imagename = imagename;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDetails() {

@@ -7,13 +7,18 @@
     tools:context=".CollectionDetailActivity"
     android:layout_margin="10dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id='@+id/recyclerview2'
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
     //a view to display all the items that will be retrived from the database
 
     //add another item
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id='@+id/recyclerview2'
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btnEdit"
+        android:layout_alignBottom="@+id/btnHome"
+        android:layout_marginTop="-500dp"
+        android:layout_marginBottom="100dp" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -21,8 +26,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="548dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="82dp"
         android:text="Add data"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="548dp"
+        android:layout_marginBottom="536dp"
+        android:text="Edit"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -32,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="608dp"
-        android:layout_marginBottom="138dp"
+        android:layout_marginBottom="32dp"
         android:text="Go to Home screen"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />

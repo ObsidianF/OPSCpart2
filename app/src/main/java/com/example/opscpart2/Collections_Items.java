@@ -5,19 +5,20 @@ public class Collections_Items {
     //this call is here to hold values before they are either stored in the database or taken to the view to be displayed
 
     private String name;
-    private String goal;
+    private int goal;
     private String uid;
     private String id;
+    private int numberOfItems;
 
     public Collections_Items() {
     }
 
-    public Collections_Items(String name, String goal, String uid, String id) {
+    public Collections_Items(String name, int goal, String uid, String id, int numberOfItems) {
         this.name = name;
         this.goal = goal;
         this.uid = uid;
         this.id = id;
-
+        this.numberOfItems = numberOfItems;
     }
 
     public String getName() {
@@ -28,11 +29,11 @@ public class Collections_Items {
         this.name = name;
     }
 
-    public String getGoal() {
+    public int getGoal() {
         return goal;
     }
 
-    public void setGoal(String goal) {
+    public void setGoal(int goal) {
         this.goal = goal;
     }
 
@@ -50,5 +51,13 @@ public class Collections_Items {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getNumberOfItems() {
+        return numberOfItems;
+    }
+
+    public void setNumberOfItems(int numberOfItems) {
+        this.numberOfItems = numberOfItems;
     }
 }

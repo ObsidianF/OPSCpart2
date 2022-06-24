@@ -2,9 +2,11 @@ package com.example.opscpart2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 //import com.google.firebase.ktx.Firebase;
@@ -40,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) { // runs this method when the activity is started
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main); // connects the activity to the related xml file
+
+        CollectionDetailActivity.checkEdit = false;
 
         mAuth = FirebaseAuth.getInstance();// gets the instance of the logged in user
         uid = mAuth.getUid(); // gets the uid of the current instance
@@ -64,15 +70,24 @@ public class MainActivity extends AppCompatActivity {
                     if (name.child("uid").getValue(String.class).equals(uid)) { // checks if the uid of the user matches the uid of the collection
                         if (name.hasChild("name") && name.hasChild("goal") && name.hasChild("id") && name.hasChild("uid")) { // makes sure that the information that is being pulled is populated and isnt going to break the app
                             final String getName = name.child("name").getValue(String.class);
-                            final String getGoal = name.child("goal").getValue(String.class);
+                            final int getGoal = name.child("goal").getValue(int.class);
                             final String getUID = name.child("uid").getValue(String.class);
                             final String getID = name.child("id").getValue(String.class); // stores the data from the object into local variables
+                            final int getNumberOfItems = name.child("numberOfItems").getValue(int.class);
 
-                            Collections_Items collections_items = new Collections_Items(getName, getGoal, getUID, getID); // stores the variables in an object
+                            Collections_Items collections_items = new Collections_Items(getName, getGoal, getUID, getID, getNumberOfItems); // stores the variables in an object
                             collections_itemsList.add(collections_items); // adds the object to the list
                         }
                     }
                 }
+
+
+
+                //
+
+                new ItemTouchHelper(simpleCallback).attachToRecyclerView(recyclerView);
+
+                //
                 recyclerView.setAdapter(new CollectionAdapter(collections_itemsList, MainActivity.this, new CollectionAdapter.ItemClickListner() { // sets the adapter for the recyclerView so that it can use the adapter to populate each cell. it passes the list through to the adapter so that each item can be placed in its own cell
                     @Override
                     public void onItemClick(Collections_Items details) { // sets an onItemClick for each item on the recyclerView so when it is clicked it will take the user to another screen
@@ -89,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }));
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -148,5 +162,63 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, CollectionDetailActivity.class)); // takes the user to the CollectionDetailActivity screen
 
     }
+
+
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+        /////////
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            int x = viewHolder.getAdapterPosition();
+            Collections_Items delete_collection_item = collections_itemsList.get(x);
+
+            Query collectionQuery = databaseReference.child("Collection").orderByChild("id").equalTo(delete_collection_item.getId());
+
+            collectionQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
+                        Snapshot.getRef().removeValue();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+            Query itemsQuery = databaseReference.child("Items").orderByChild("collectionID").equalTo(delete_collection_item.getId());
+
+            itemsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
+                        Snapshot.getRef().removeValue();
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            Toast.makeText(MainActivity.this, delete_collection_item.getName() + " deleted!", Toast.LENGTH_SHORT).show();
+
+
+
+        }
+    };
+
+
 
 }
