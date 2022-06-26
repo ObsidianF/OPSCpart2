@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAddCollection; // creates buttons
     private String uid; // string to store the user uid
     public static Collections_Items holder; // will create on an object to store tge clicked on item
+    private ProgressBar progressBar;
 
     public final List<Collections_Items> collections_itemsList = new ArrayList<>(); // makes a list of Collections_Items objects
     private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(); // gets the reference of the realtime database
@@ -74,15 +76,15 @@ public class MainActivity extends AppCompatActivity {
                             final String getUID = name.child("uid").getValue(String.class);
                             final String getID = name.child("id").getValue(String.class); // stores the data from the object into local variables
                             final int getNumberOfItems = name.child("numberOfItems").getValue(int.class);
-                            final String getTotal = name.child("total").getValue(String.class);
+                            //final String getTotal = name.child("total").getValue(String.class);
+                            //progressBar.setMax(goal);
 
-                            Collections_Items collections_items = new Collections_Items(getName, getGoal, getUID, getID, getNumberOfItems, getTotal); // stores the variables in an object
+                            Collections_Items collections_items = new Collections_Items(getName, getGoal, getUID, getID, getNumberOfItems);
+                                    //getTotal); // stores the variables in an object
                             collections_itemsList.add(collections_items); // adds the object to the list
                         }
                     }
                 }
-
-
 
                 //
 
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         holder.setName(details.getName());
                         holder.setGoal(details.getGoal());
                         holder.setId(details.getId());
-                        holder.setTotal(details.getTotal());
+                       // holder.setTotal(details.getTotal());
                         //sets the object of the item that was clicked
 
                         goDetails(); // runs the method to go to the details screen
@@ -117,11 +119,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 logout(); // makes a on click listener to log the user out
 
             }
 
         });
+
+
 
         //Lion, L., 2022. how to go another screen in android studio on button click Code Example. [online] Codegrepper.com. Available at: <https://www.codegrepper.com/code-examples/java/how+to+go+another+screen+in+android+studio+on+button+click> [Accessed 2 June 2022].
         btnAddCollection = findViewById(R.id.btnlogout2);

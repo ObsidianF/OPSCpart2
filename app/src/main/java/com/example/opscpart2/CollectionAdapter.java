@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,11 +31,14 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
     private final List<Collections_Items> items; // creates a list of Collections_Items to store everything from the database in
     private final Context context;
     private ItemClickListner mItemListener;
+    private ProgressBar progressBar;
+
 
     public CollectionAdapter(List<Collections_Items> items, Context context, ItemClickListner itemClickListner) {
         this.items = items;
         this.context = context;
         this.mItemListener = itemClickListner;
+
     }
 
     @NonNull
@@ -48,17 +52,18 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
     public void onBindViewHolder(@NonNull CollectionAdapter.MyViewHolder holder, int position) {
 
         Collections_Items collections_items = items.get(position);
-
         String name = "Collection: " + collections_items.getName();
-        String goal = "Goal: " + collections_items.getGoal();
+        String goal = "Goal: " + collections_items.getGoal()+"   "+collections_items.getNumberOfItems()+"/"+collections_items.getGoal();
         String total =  collections_items.getNumberOfItems()+"/"+collections_items.getGoal();
 
         holder.name.setText(name);
         holder.goal.setText(goal);
-        holder.total.setText(total);
+       // holder.total.setText(total);
 
+       // progressBar.setMax(Integer.parseInt(goal));
         holder.itemView.setOnClickListener(view -> {
             mItemListener.onItemClick(items.get(position));
+
             //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
 
         });
@@ -77,14 +82,16 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
-        private final TextView name, goal, total;
+        private final TextView name, goal;
+                //, total;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.CollectionNameTV);
             goal = itemView.findViewById(R.id.GoalAmountTV);
-            total = itemView.findViewById(R.id.GoalTV);
+          //  total = itemView.findViewById(R.id.GoalTV);
+
 
             //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
 
