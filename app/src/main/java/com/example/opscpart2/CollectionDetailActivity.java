@@ -214,7 +214,8 @@ public class CollectionDetailActivity extends AppCompatActivity {
                         }
                     });
 
-                    int itemNo = MainActivity.holder.getNumberOfItems() - 1;
+                    int itemNo = MainActivity.holder.getNumberOfItems();
+                    itemNo = itemNo - 1;
                     MainActivity.holder.setNumberOfItems(itemNo);
 
                     //Firebase. 2022. Read and Write Data on Android  |  Firebase Documentation. [online] Available at: <https://firebase.google.com/docs/database/android/read-and-write> [Accessed 2 June 2022].

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -52,10 +53,13 @@ public class AddCollectionActivity extends AppCompatActivity {
             collectionsItems.setId(idHolder);
             collectionsItems.setNumberOfItems(noItems);
 
+            Toast.makeText(AddCollectionActivity.this, nameHolder, Toast.LENGTH_SHORT).show();
+
+
             collectionname = findViewById(R.id.textName);
             goal = findViewById(R.id.textGoal); // sets both edit text variables to the related edit text views in the xml file so they can store text entered
             collectionname.setText(nameHolder);
-            goal.setText(goalHolder);
+            goal.setText(Integer.toString(goalHolder));
 
 
 
