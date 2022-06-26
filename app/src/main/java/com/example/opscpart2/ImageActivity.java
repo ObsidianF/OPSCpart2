@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.opscpart2.databinding.ActivityImageBinding;
 import com.example.opscpart2.databinding.ActivityMainBinding;
@@ -35,10 +36,14 @@ public class ImageActivity extends AppCompatActivity {
     private ImageView myImageView;
     StorageReference storageReference; // a reference object to the storage for the image
     public static String filename;
+    private boolean checkImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        checkImage = false;
+
         binding = ActivityImageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot()); // sets up the connection between this class and the xml file
         //Android Developers. 2022. Generated binding classes  |  Android Developers. [online] Available at: <https://developer.android.com/topic/libraries/data-binding/generated-binding> [Accessed 2 June 2022].
@@ -48,6 +53,7 @@ public class ImageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectImage();
+                checkImage = true;
             }  // makes an OnClickListener to run a method
 
         });
@@ -57,8 +63,17 @@ public class ImageActivity extends AppCompatActivity {
         btnStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImage();
-                addItemScreen();
+                if (checkImage){
+
+                    uploadImage();
+                    addItemScreen();
+                }
+                else{
+
+                    Toast.makeText(ImageActivity.this, "Select an image", Toast.LENGTH_SHORT).show();
+
+                }
+
             }// makes an OnClickListener to run the methods
         });
 

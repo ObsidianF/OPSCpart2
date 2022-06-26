@@ -37,6 +37,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
     private Button btnAddItem; // buttons that will be used to do actions
     private Button btnEdit;
     public static boolean checkEdit;
+    private boolean stopChange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_collection_detail);
 
         checkEdit = false;
+        stopChange = true;
 
         final RecyclerView recyclerView = findViewById(R.id.recyclerview2); // sets the recyclerView up so that we can call the object and set data to it
         recyclerView.setHasFixedSize(true);
@@ -129,8 +131,13 @@ public class CollectionDetailActivity extends AppCompatActivity {
     }
 
     public void goHome() {
+        if (stopChange){
 
-        startActivity(new Intent(CollectionDetailActivity.this, MainActivity.class)); // takes user to main screen
+            startActivity(new Intent(CollectionDetailActivity.this, MainActivity.class)); // takes user to main screen
+
+        }
+
+
 
     }
 
@@ -156,6 +163,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
             int x = viewHolder.getAdapterPosition();
             ItemGetSet delete_item = itemGetSetsList.get(x);
+            stopChange = false;
 
             Query itemsQuery = databaseReference.child("Items").orderByChild("id").equalTo(delete_item.getId());
             itemsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -225,6 +233,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
                     reference.child(String.valueOf(MainActivity.holder.getId())).setValue(MainActivity.holder); // maxid + 1 sets the new id and setValue sets the object to be stored in the database
                     //Firebase. 2022. Read and Write Data on Android  |  Firebase Documentation. [online] Available at: <https://firebase.google.com/docs/database/android/read-and-write> [Accessed 2 June 2022].
+                    stopChange = true;
 
 
 

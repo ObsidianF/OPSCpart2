@@ -53,7 +53,7 @@ public class AddCollectionActivity extends AppCompatActivity {
             collectionsItems.setId(idHolder);
             collectionsItems.setNumberOfItems(noItems);
 
-            Toast.makeText(AddCollectionActivity.this, nameHolder, Toast.LENGTH_SHORT).show();
+
 
 
             collectionname = findViewById(R.id.textName);
