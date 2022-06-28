@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +35,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private int maxidt;
     private Button Home;
+    private Button btnGraph;
     private Button btnAddItem; // buttons that will be used to do actions
     private Button btnEdit;
     public static boolean checkEdit;
@@ -117,6 +119,13 @@ public class CollectionDetailActivity extends AppCompatActivity {
             } // sets an OnClickListener to run a method
         });
 
+        btnGraph = findViewById(R.id.btngraph);
+        btnGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goGraph();
+            } // sets an OnClickListener to run a method
+        });
     }
 
     private void getSelectedCollection() {
@@ -146,6 +155,13 @@ public class CollectionDetailActivity extends AppCompatActivity {
         checkEdit = true;
         startActivity(new Intent(CollectionDetailActivity.this, AddCollectionActivity.class)); // takes user to main screen
 
+
+    }
+
+    public void goGraph() {
+
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(CollectionDetailActivity.this, Graph.class)); // will sigh the user out and take them to the login screen
 
     }
 

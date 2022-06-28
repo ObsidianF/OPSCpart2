@@ -14,16 +14,27 @@
         />
 
     <Button
-        android:id="@+id/btnEdit"
+        android:id="@+id/btngraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="548dp"
         android:layout_marginBottom="137dp"
-        android:text="Edit"
+        android:text="graph"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="548dp"
+        android:layout_marginBottom="193dp"
+        android:text="Edit"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnAdd"

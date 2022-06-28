@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                         holder.setName(details.getName());
                         holder.setGoal(details.getGoal());
                         holder.setId(details.getId());
+                        holder.setNumberOfItems(details.getNumberOfItems());
+
                         //sets the object of the item that was clicked
 
                         goDetails(); // runs the method to go to the details screen
@@ -135,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             } // runs an setOnClickListener on a button to send the user to another screen
         });
 
+
     }
 
     @Override
@@ -152,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(MainActivity.this, LoginActivity.class)); // will sigh the user out and take them to the login screen
+
+    }
+    public void goGraph() {
+
+        startActivity(new Intent(MainActivity.this, Graph.class)); // will sigh the user out and take them to the login screen
 
     }
 
