@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,6 +39,12 @@ public class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyViewHolder> {
         holder.Details.setText(itemGetSet.getDetails());
         holder.Date.setText(itemGetSet.getDate());
         //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
+
+
+        Picasso.get().load(itemGetSet.getImagename()).resize(100,100).centerCrop().into(holder.imageView);
+
+
+
     }
 
     @Override
@@ -45,11 +54,13 @@ public class MyAdpater extends RecyclerView.Adapter<MyAdpater.MyViewHolder> {
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView Details, Date;
+        private final ImageView imageView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Details = itemView.findViewById(R.id.DetailsTV);
             Date = itemView.findViewById(R.id.DateTV);
+            imageView = itemView.findViewById(R.id.imageView2);
             //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].
         }
     }

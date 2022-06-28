@@ -129,7 +129,7 @@ public class AddItemActivity extends AppCompatActivity {
                 itemGetSetToAdd.setDetails(description.getText().toString());
                 itemGetSetToAdd.setDate(filename);
                 itemGetSetToAdd.setCollectionID(MainActivity.holder.getId());
-                itemGetSetToAdd.setImagename(ImageActivity.filename);
+                itemGetSetToAdd.setImagename(ImageActivity.imageUri.toString());
                 //sets all the values in the object to be stored
                 //Firebase. 2022. Read and Write Data on Android  |  Firebase Documentation. [online] Available at: <https://firebase.google.com/docs/database/android/read-and-write> [Accessed 2 June 2022].
 
