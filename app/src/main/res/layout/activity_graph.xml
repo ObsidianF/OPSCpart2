@@ -29,24 +29,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/pie_chart" />
+
     <Button
         android:id="@+id/btnclick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="115dp"
+        android:layout_height="53dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="584dp"
-        android:text="click"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="576dp"
+        android:text="Make Graph!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="115dp"
+        android:layout_height="53dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="624dp"
+        android:layout_marginTop="576dp"
+        android:layout_marginEnd="80dp"
         android:text="Go back"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -148,9 +148,6 @@ public class AddItemActivity extends AppCompatActivity {
                 //Firebase. 2022. Read and Write Data on Android  |  Firebase Documentation. [online] Available at: <https://firebase.google.com/docs/database/android/read-and-write> [Accessed 2 June 2022].
 
 
-
-
-
                 goHome(); // calls go home method
 
             }

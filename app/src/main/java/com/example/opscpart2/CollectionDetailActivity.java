@@ -107,7 +107,19 @@ public class CollectionDetailActivity extends AppCompatActivity {
         btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addItemScreen();
+
+                if(MainActivity.holder.getNumberOfItems() == MainActivity.holder.getGoal())
+                {
+                    Toast.makeText(CollectionDetailActivity.this, "Delete an item or change the goal to add more items", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    addItemScreen();
+
+                }
+
+
             }// sets an OnClickListener to run a method
         });
 

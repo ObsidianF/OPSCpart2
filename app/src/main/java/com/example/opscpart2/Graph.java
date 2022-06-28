@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,11 +34,14 @@ public class Graph extends AppCompatActivity {
         Back = findViewById(R.id.btnBack);
         chart = findViewById(R.id.pie_chart);
 
+        double noItemPer = MainActivity.holder.getNumberOfItems();
+        double noGoalPer = MainActivity.holder.getGoal();
 
-        int percent =(MainActivity.holder.getNumberOfItems()/ MainActivity.holder.getGoal())*100;
+        double percent =noItemPer/noGoalPer;
+        double roundDbl = Math.round(percent*100.0)/100.0;
 
         TextView textView = (TextView)findViewById(R.id.textView4);
-        textView.setText(Integer.toString(percent));
+        textView.setText(Double.toString(roundDbl * 100) + "%");
 
 
 
@@ -55,28 +59,25 @@ public class Graph extends AppCompatActivity {
      Back.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            goBack();
+            goToDetail();
         } // sets an OnClickListener to run a method
     });
 }
 
-    public void goBack() {
+    public void goToDetail() {
 
-        startActivity(new Intent(Graph.this, CollectionDetailActivity.class)); // will sigh the user out and take them to the login screen
+        startActivity(new Intent(Graph.this, MainActivity.class)); // will sigh the user out and take them to the login screen
 
     }
 
     private void addToChart(){
-         //for (int i = 0; i < 5;i++) {
+
              chart.addPieSlice(new PieModel("integer 1", (MainActivity.holder.getNumberOfItems()), Color.parseColor("#FFA726")));
              chart.addPieSlice(new PieModel("integer 1", MainActivity.holder.getGoal()-MainActivity.holder.getNumberOfItems(), Color.parseColor("#66BB6A")));
-             //chart.addPieSlice(new PieModel("integer 2",i2, Color.parseColor("#66BB6A")));
-             //chart.addPieSlice(new PieModel("integer 2",i3, Color.parseColor("##FF0000")));
-
 
              chart.startAnimation();
              click.setClickable(false);
-       //  }
+
     }
 
     }
