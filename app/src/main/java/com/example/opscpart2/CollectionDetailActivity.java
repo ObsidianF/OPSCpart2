@@ -108,7 +108,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(MainActivity.holder.getNumberOfItems() == MainActivity.holder.getGoal())
+                if(MainActivity.holder.getNumberOfItems() == MainActivity.holder.getGoal()) // checks if the user has reached the goal and wont let them add a new item
                 {
                     Toast.makeText(CollectionDetailActivity.this, "Delete an item or change the goal to add more items", Toast.LENGTH_SHORT).show();
 
@@ -180,25 +180,27 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
 
 
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) { // sets a touch helper so we can make it so the items in the view can swipe
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
         }
 
         @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) { // will run this code when the item is swiped
 
             int x = viewHolder.getAdapterPosition();
             ItemGetSet delete_item = itemGetSetsList.get(x);
             stopChange = false;
 
-            Query itemsQuery = databaseReference.child("Items").orderByChild("id").equalTo(delete_item.getId());
+            Query itemsQuery = databaseReference.child("Items").orderByChild("id").equalTo(delete_item.getId()); // sets a query
             itemsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
-                        Snapshot.getRef().removeValue();
+                        Snapshot.getRef().removeValue(); // deletes items bassed on query
+                       //Puffelen, F., 2022. How to delete from firebase realtime database?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/37390864/how-to-delete-from-firebase-realtime-database#:~:text=According%20to%20the%20docs%2C%20to,removeValue()%20on%20the%20reference.> [Accessed 29 June 2022].
+                        //Youtube.com. 2022. How to Implement Update & Delete Firebase Query in Android Studio | Update&Delete | Android Coding. [online] Available at: <https://www.youtube.com/watch?v=aQ7MGoMNBik> [Accessed 29 June 2022].
                     }
 
                 }
@@ -209,12 +211,14 @@ public class CollectionDetailActivity extends AppCompatActivity {
                 }
             });
 
-            Query collectionQuery = referenceDel.child("Collection").orderByChild("id").equalTo(MainActivity.holder.getId());
+            Query collectionQuery = referenceDel.child("Collection").orderByChild("id").equalTo(MainActivity.holder.getId()); //makes a query
             collectionQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
-                        Snapshot.getRef().removeValue();
+                        Snapshot.getRef().removeValue(); // delets the collection based on the query
+                        //Puffelen, F., 2022. How to delete from firebase realtime database?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/37390864/how-to-delete-from-firebase-realtime-database#:~:text=According%20to%20the%20docs%2C%20to,removeValue()%20on%20the%20reference.> [Accessed 29 June 2022].
+                        //Youtube.com. 2022. How to Implement Update & Delete Firebase Query in Android Studio | Update&Delete | Android Coding. [online] Available at: <https://www.youtube.com/watch?v=aQ7MGoMNBik> [Accessed 29 June 2022].
                     }
                 }
 
@@ -259,7 +263,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
 
 
-                    reference.child(String.valueOf(MainActivity.holder.getId())).setValue(MainActivity.holder); // maxid + 1 sets the new id and setValue sets the object to be stored in the database
+                    reference.child(String.valueOf(MainActivity.holder.getId())).setValue(MainActivity.holder); // sets the old id and setValue sets the object to be stored in the database
                     //Firebase. 2022. Read and Write Data on Android  |  Firebase Documentation. [online] Available at: <https://firebase.google.com/docs/database/android/read-and-write> [Accessed 2 June 2022].
                     stopChange = true;
 
@@ -267,6 +271,7 @@ public class CollectionDetailActivity extends AppCompatActivity {
 
                 }
             }, 5000);
+            //Tutorialspoint.com. 2022. How to set delay in android?. [online] Available at: <https://www.tutorialspoint.com/how-to-set-delay-in-android> [Accessed 29 June 2022].
 
 
 

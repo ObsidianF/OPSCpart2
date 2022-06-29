@@ -42,6 +42,7 @@ public class Graph extends AppCompatActivity {
 
         TextView textView = (TextView)findViewById(R.id.textView4);
         textView.setText(Double.toString(roundDbl * 100) + "%");
+        //sets the total % of the collection
 
 
 
@@ -74,9 +75,12 @@ public class Graph extends AppCompatActivity {
 
              chart.addPieSlice(new PieModel("integer 1", (MainActivity.holder.getNumberOfItems()), Color.parseColor("#FFA726")));
              chart.addPieSlice(new PieModel("integer 1", MainActivity.holder.getGoal()-MainActivity.holder.getNumberOfItems(), Color.parseColor("#66BB6A")));
+                // sets the vlaue of the graph
 
              chart.startAnimation();
              click.setClickable(false);
+
+             //Youtube.com. 2022. How to implement simple Pie Chart in app | Android Studio | Java | Android App Development. [online] Available at: <https://www.youtube.com/watch?v=Ge11WEKCCPE> [Accessed 29 June 2022].
 
     }
 

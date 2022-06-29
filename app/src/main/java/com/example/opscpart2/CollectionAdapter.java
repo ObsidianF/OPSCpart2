@@ -57,11 +57,11 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
 
 
-        holder.name.setText(name);
+        holder.name.setText(name); // sets values for text views
         holder.goal.setText(goal);
 
         holder.progressBar.setMax(collections_items.getGoal());
-        holder.progressBar.setProgress(collections_items.getNumberOfItems());
+        holder.progressBar.setProgress(collections_items.getNumberOfItems()); // sets values for progress bar
 
 
 
@@ -97,7 +97,8 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
 
             name = itemView.findViewById(R.id.CollectionNameTV);
             goal = itemView.findViewById(R.id.GoalAmountTV);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            progressBar = itemView.findViewById(R.id.progressBar); // sets variables to views
+            //Abhiandroid.com. 2022. ProgressBar Tutorial With Example In Android Studio | Abhi Android. [online] Available at: <https://abhiandroid.com/ui/progressbar#:~:text=In%20Android%2C%20ProgressBar%20is%20used,use%20style%20attribute%20as%20horizontal.> [Accessed 29 June 2022].
 
 
             //Youtube.com. 2021. Recyclerview Item Click Listener Android Example | OnItemClickListener on RecyclerView + CardView. [online] Available at: <https://www.youtube.com/watch?v=90khNCjWUEI> [Accessed 2 June 2022].

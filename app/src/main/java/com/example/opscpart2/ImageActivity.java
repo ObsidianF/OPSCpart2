@@ -106,7 +106,7 @@ public class ImageActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
 
-                        imageUri = uri;
+                        imageUri = uri; // gets the image download link o download the image from the storage in firebase
 
                     }
                 });

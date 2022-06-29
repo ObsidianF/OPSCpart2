@@ -53,19 +53,19 @@ public class RegisterActivity extends AppCompatActivity {
         String user = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
         if (user.isEmpty()) {
-            email.setError("Email can not be empty");
+            email.setError("Email can not be empty"); // checks if the user has entred an email
         }
         if (pass.isEmpty()) {
-            password.setError("Password can not be empty");
+            password.setError("Password can not be empty"); // checks if the user has entred an password
         } else {
-            mAuth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() { //sends new user to database
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                        startActivity(new Intent(RegisterActivity.this, MainActivity.class)); // sends user to the next screen
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Registration Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Registration Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show(); // if the register failed
                     }
                 }
             });

@@ -197,18 +197,20 @@ public class MainActivity extends AppCompatActivity {
         /////////
 
         @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) { // makes it so it will run this method when the item in the recler view is swiped
 
-            int x = viewHolder.getAdapterPosition();
-            Collections_Items delete_collection_item = collections_itemsList.get(x);
+            int x = viewHolder.getAdapterPosition(); // gets position of item in the recyler view
+            Collections_Items delete_collection_item = collections_itemsList.get(x); // makes an object of the item
 
-            Query collectionQuery = databaseReference.child("Collection").orderByChild("id").equalTo(delete_collection_item.getId());
+            Query collectionQuery = databaseReference.child("Collection").orderByChild("id").equalTo(delete_collection_item.getId()); // makes a query
 
             collectionQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
-                        Snapshot.getRef().removeValue();
+                        Snapshot.getRef().removeValue(); // removes the data from the database using the query
+                        //Puffelen, F., 2022. How to delete from firebase realtime database?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/37390864/how-to-delete-from-firebase-realtime-database#:~:text=According%20to%20the%20docs%2C%20to,removeValue()%20on%20the%20reference.> [Accessed 29 June 2022].
+                        //Youtube.com. 2022. How to Implement Update & Delete Firebase Query in Android Studio | Update&Delete | Android Coding. [online] Available at: <https://www.youtube.com/watch?v=aQ7MGoMNBik> [Accessed 29 June 2022].
                     }
                 }
 
@@ -219,13 +221,15 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-            Query itemsQuery = databaseReference.child("Items").orderByChild("collectionID").equalTo(delete_collection_item.getId());
+            Query itemsQuery = databaseReference.child("Items").orderByChild("collectionID").equalTo(delete_collection_item.getId()); // query to delete items for the collecion
 
             itemsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
-                        Snapshot.getRef().removeValue();
+                        Snapshot.getRef().removeValue(); // deletes the data in firebase using the query
+                        //Puffelen, F., 2022. How to delete from firebase realtime database?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/37390864/how-to-delete-from-firebase-realtime-database#:~:text=According%20to%20the%20docs%2C%20to,removeValue()%20on%20the%20reference.> [Accessed 29 June 2022].
+                        //Youtube.com. 2022. How to Implement Update & Delete Firebase Query in Android Studio | Update&Delete | Android Coding. [online] Available at: <https://www.youtube.com/watch?v=aQ7MGoMNBik> [Accessed 29 June 2022].
 
                     }
                 }

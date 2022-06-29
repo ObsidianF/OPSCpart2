@@ -36,14 +36,14 @@ public class AddCollectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_collection);//sets this activity to the related xml file so they can communicate
 
-        if (CollectionDetailActivity.checkEdit)
+        if (CollectionDetailActivity.checkEdit) // checks if the user has eddited a collection
         {
 
             String nameHolder = MainActivity.holder.getName();
             int goalHolder = MainActivity.holder.getGoal();
             String uidHolder = MainActivity.holder.getUid();
             String idHolder = MainActivity.holder.getId();
-            int noItems = MainActivity.holder.getNumberOfItems();
+            int noItems = MainActivity.holder.getNumberOfItems(); // sets all the vlaues
 
             collectionsItems = new Collections_Items(); // creates the object of type Collections_Items\
 
@@ -90,7 +90,9 @@ public class AddCollectionActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot Snapshot: dataSnapshot.getChildren()) {
-                        Snapshot.getRef().removeValue();
+                        Snapshot.getRef().removeValue(); // deletes item based on the query
+                        //Youtube.com. 2022. How to Implement Update & Delete Firebase Query in Android Studio | Update&Delete | Android Coding. [online] Available at: <https://www.youtube.com/watch?v=aQ7MGoMNBik> [Accessed 29 June 2022].
+                        //Puffelen, F., 2022. How to delete from firebase realtime database?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/37390864/how-to-delete-from-firebase-realtime-database#:~:text=According%20to%20the%20docs%2C%20to,removeValue()%20on%20the%20reference.> [Accessed 29 June 2022].
                     }
                 }
 

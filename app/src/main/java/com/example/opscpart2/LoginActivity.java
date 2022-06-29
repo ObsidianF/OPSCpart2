@@ -50,19 +50,19 @@ public class LoginActivity extends AppCompatActivity {
         String user = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
         if(user.isEmpty())
-        {            email.setError("Email can not be empty");        }
+        {            email.setError("Email can not be empty");        } // checks for user input
         if(pass.isEmpty())
-        {            password.setError("Password can not be empty");        }
+        {            password.setError("Password can not be empty");        }// checks for user input
         else
         {
-            mAuth.signInWithEmailAndPassword(user,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(user,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() { // checks if the user has a login
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
                     if(task.isSuccessful())
                     {
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this , MainActivity.class));
+                        startActivity(new Intent(LoginActivity.this , MainActivity.class)); // takes user to the next screen
                     }
                     else
                     {
