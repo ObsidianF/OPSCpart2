@@ -5,23 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="#415A6E">
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id='@+id/recyclerview'
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id = '@+id/recyclerview'/>
+        android:layout_height="match_parent" />
     //this will make the list of collections
 
+
+    //logs the user out
 
     <Button
         android:id="@+id/btnlogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="82dp"
+        android:layout_marginBottom="71dp"
         android:text="Log Out" />
-    //logs the user out
+
+    <Button
+        android:id="@+id/btngamescreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="121dp"
+        android:text="Game Screen" />
 
     <Button
         android:id="@+id/btnlogout2"

@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; // will get the instance of the logged in user if they are logged in
     private Button btnLogout;
     private Button btnAddCollection; // creates buttons
+    private Button btnGame;
     private String uid; // string to store the user uid
     public static Collections_Items holder; // will create on an object to store tge clicked on item
     private ProgressBar progressBar;
@@ -137,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
             } // runs an setOnClickListener on a button to send the user to another screen
         });
 
+        btnGame = findViewById(R.id.btngamescreen);
+        btnGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goGame();
+            } // runs an setOnClickListener on a button to send the user to another screen
+        });
+
 
     }
 
@@ -157,9 +166,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, LoginActivity.class)); // will sigh the user out and take them to the login screen
 
     }
-    public void goGraph() {
 
-        startActivity(new Intent(MainActivity.this, Graph.class)); // will sigh the user out and take them to the login screen
+
+    public void goGame() {
+
+        startActivity(new Intent(MainActivity.this, GameScreen.class)); // will sigh the user out and take them to the login screen
 
     }
 

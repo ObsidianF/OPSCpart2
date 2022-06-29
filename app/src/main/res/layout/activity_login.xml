@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="#415A6E">
 
 
     <TextView
@@ -46,7 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_password"
         android:text="Login"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button"
+        />
     //will log the user in
 
 
